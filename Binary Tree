@@ -1,4 +1,5 @@
-
+#include <iostream>
+#include <queue>
 template <typename T>
 	class BinaryTreeNode {
     	public : 
@@ -12,7 +13,10 @@ template <typename T>
         	right = NULL;
     	}
 	};
-  
+ 
+ using namespace std;
+#include "solution.h"
+
   BinaryTreeNode<int>* takeInput() {
     int rootData;
 
