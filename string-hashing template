@@ -1,0 +1,33 @@
+pair<const int,const int> mod={1e9+7,1e9+9};
+pair<int,int> subHash(int l,int r,vector<pair<ll,ll>>& pref_hash,vector<pair<ll,ll>>& power_pref){
+    if (l == 0)
+            return pref_hash[r];
+ 
+        pair<ll, ll> sub_hash;
+        sub_hash.first = ((pref_hash[r].first - (ll)pref_hash[l - 1].first * power_pref[r - l + 1].first) % mod.first);
+        if (sub_hash.first < 0)
+            sub_hash.first += mod.first;
+ 
+        sub_hash.second = ((pref_hash[r].second - (ll)pref_hash[l - 1].second * power_pref[r - l + 1].second) % mod.second);
+        if (sub_hash.second < 0)
+            sub_hash.second += mod.second;
+        return sub_hash;
+}
+void solve() {
+   string s;
+    cin >> s;
+ 
+    int n = s.length();
+    vector<pair<ll, ll>> pref_hash(n);
+    vector<pair<ll, ll>> power_pref(n);
+    pref_hash[0] = { s[0] - 'a' + 1, s[0] - 'a' + 1 };
+    power_pref[0] = { 1,1 };
+    for (int i = 1;i < n;i++)
+    {
+        pref_hash[i].first = (pref_hash[i - 1].first * (ll)31 + (s[i] - 'a' + 1)) % mod.first;
+        pref_hash[i].second = (pref_hash[i - 1].second * (ll)53 + (s[i] - 'a' + 1)) % mod.second;
+ 
+        power_pref[i].first = (power_pref[i - 1].first * (ll)31) % mod.first;
+        power_pref[i].second = (power_pref[i - 1].second * (ll)53) % mod.second;
+    }
+}
