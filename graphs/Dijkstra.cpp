@@ -9,7 +9,7 @@ using namespace std;
 vector<int> dijkstra(int n,vector<vector<pair<int,int>>> &graph,int src){
     vector<int> distance(n+1,INFINITY);
     distance[src]=0;
-    priority_queue<pair<int,int>>pq;
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<>>pq;
     pq.push({0,src});
     while(!pq.empty()){
         int currentNode = pq.top().second;
