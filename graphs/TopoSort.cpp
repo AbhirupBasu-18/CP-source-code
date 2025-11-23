@@ -126,6 +126,27 @@ vector<int> kahn_algorithm(vector<vector<int>>& adj){
     }
     return topo;
 }
+
+//topo sort dfs
+vector<int> ans;
+vector<int> visited;
+void dfs(int node,vector<vector<int>> adj){
+    visited[node]=1;
+    for(auto it:adj[node]){
+        if(!visited[it]){
+            dfs(it,adj);
+        }
+    }
+    ans.push_back(node);
+}
+void topological_sorting(int n,vector<vector<int>> adj){
+    for(int i=0;i<n;i++){
+        if(!visited[i]){
+            dfs(i,adj);
+        }
+    }
+    reverse(ans.begin(),ans.end());
+}
 void solve(int tc,int curr) {
     
 }
