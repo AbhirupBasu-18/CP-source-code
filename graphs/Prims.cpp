@@ -112,6 +112,9 @@ vector<vector<int>> prims(int n, vector<vector<int>> edg[]){
         int node = top.second.first;
         int weight = top.first;
         int parent = top.second.second;
+        if(visited[node]){
+            continue;
+        }
         visited[node]=1;
         if(parent!=-1){
             cost+=weight;
