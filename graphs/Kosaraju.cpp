@@ -110,6 +110,7 @@ void kosaraju(vector<vector<int>>& adj,vector<vector<int>>& component,
                 dfs(dfs,v);
             }
         }
+        order.push_back(u);
     };
     for(int i =0;i<n;i++){
         if(!visited[i]){
@@ -122,7 +123,7 @@ void kosaraju(vector<vector<int>>& adj,vector<vector<int>>& component,
     vector<vector<int>> adj_rev(n);
     for(int u =0;u<n;u++){
         for(int v: adj[u]){
-            adj[v].push_back(u);
+            adj_rev[v].push_back(u);
         }
     }
     auto dfs_rev = [&](auto&& dfs_rev, int u) -> void {
@@ -135,6 +136,7 @@ void kosaraju(vector<vector<int>>& adj,vector<vector<int>>& component,
         }
     };
     vector<int> roots(n);
+    fill(visited.begin(),visited.end(),0);
     //getting the strongly connected components
     for(int u: order){
         if(visited[u]){
